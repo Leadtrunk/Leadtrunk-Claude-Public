@@ -1,0 +1,9 @@
+{
+  "name": "ltk-hello",
+  "version": "0.1.0",
+  "description": "Plugin de test Leadtrunk : vérifie que la marketplace ltk fonctionne de bout en bout",
+  "author": {
+    "name": "Leadtrunk",
+    "url": "https://github.com/Leadtrunk"
+  }
+}
