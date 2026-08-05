@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "ltk",
+  "displayName": "Ltk — rituels de session Leadtrunk",
+  "description": "Quatre compétences qui couvrent la vie d'une conversation de travail : l'ouvrir (ltk-start), garder le cap (ltk-focus), affûter une demande (ltk-prompt), la clore par un handoff durable (ltk-exit).",
+  "author": {
+    "name": "Leadtrunk",
+    "url": "https://github.com/Leadtrunk"
+  },
+  "homepage": "https://github.com/Leadtrunk/Leadtrunk-Claude-Public",
+  "repository": "https://github.com/Leadtrunk/Leadtrunk-Claude-Public",
+  "keywords": [
+    "session",
+    "handoff",
+    "passation",
+    "cadrage",
+    "reprise",
+    "francais"
+  ]
+}
