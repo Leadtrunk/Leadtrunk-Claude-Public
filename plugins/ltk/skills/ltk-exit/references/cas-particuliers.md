@@ -1,76 +1,58 @@
 # Cas particuliers de clôture
 
-Consulte ce fichier quand l'un de ces cas se présente — pas systématiquement. La clôture
-ordinaire n'en a pas besoin, et les charger à chaque fois noierait les huit étapes.
+Trois situations que l'Étape 2 signale mais ne détaille pas. Lis la section concernée
+quand elle se présente — pas avant, elle alourdirait inutilement le corps de la compétence.
 
-### Une conversation qui traverse plusieurs projets
+## Une conversation qui traverse plusieurs areas
 
-C'est fréquent sur une longue session, et c'est le cas où la clôture rate le plus souvent :
-on écrit un handoff unique, dans le projet où l'on se trouve au moment de clore, et le
-travail fait sur les autres devient introuvable — rangé sous un nom qui ne le désigne pas.
+Rare, mais ça arrive : un dépannage réseau touche à la fois l'area `ltk` et l'area
+`finance` parce que le montage NAS sert aux deux. Le test de l'Étape 2 (« un projet, un
+handoff ») s'applique **par area**, pas globalement :
 
-Fais donc l'inventaire avant d'écrire, dans cet ordre :
+1. Sépare d'abord par area, pas par projet — chaque area aura son propre `handoff/`.
+2. À l'intérieur de chaque area, applique le découpage habituel : un projet, un handoff.
+3. Si le travail sur l'une des areas dépend de celui sur l'autre (le montage NAS a été
+   corrigé *pour* débloquer le travail Finance), dis-le explicitement dans les deux
+   handoffs — chacun doit pouvoir se lire seul, mais ni l'un ni l'autre ne doit cacher
+   qu'il existe un lien.
 
-1. **Liste les projets touchés** — un projet est un dossier de travail. Relis la conversation
-   en cherchant les chemins écrits, pas les sujets abordés : c'est le dossier qui décide.
-2. **Dans chaque projet, liste les chantiers**, avec le test d'indépendance ci-dessus.
-3. **Écris un handoff par chantier, dans le `handoff/` de son propre projet** — en le créant
-   si besoin. Deux projets touchés, c'est au minimum deux fichiers, à deux endroits.
-4. **Ne relie par un renvoi que ce qui se tient** : deux chantiers d'un même projet, oui.
-   Deux projets sans rapport, non — le renvoi suggérerait une dépendance qui n'existe pas.
+N'écris jamais un handoff unique « à cheval » sur deux areas : il finira rangé dans l'une
+des deux, et restera invisible depuis l'autre — exactement le problème que le découpage en
+areas sert à éviter.
 
-Annonce le classement avant d'écrire, en une ligne par fichier : *« projet X → chantier Y →
-`X/handoff/AAAA-MM-JJ-y.md` »*. C'est le moment le moins cher pour corriger une erreur de
-rangement ; après, le fichier est écrit au mauvais endroit et personne ne le retrouvera.
+## Une area dont le `handoff/` ou l'`INDEX.md` manque
 
-Un travail simplement **mentionné** ne fait pas un chantier. S'il n'a produit ni décision, ni
-livrable, ni piège découvert, il n'a rien à transmettre — une ligne dans le handoff du
-chantier principal suffit, ou rien du tout.
+Se produit la première fois qu'une area passe par une clôture, ou quand quelqu'un a
+supprimé le dossier par erreur. Ne traite pas ça comme une anomalie bloquante — c'est
+l'état normal d'une area neuve.
 
-### Crée le rangement qui manque, ne t'en passe pas
+- Crée `handoff/` s'il manque, silencieusement.
+- Crée `handoff/INDEX.md` s'il manque, avec le gabarit de l'Étape 5 et une seule ligne :
+  celle du projet que tu clôtures maintenant.
+- Ne cherche pas à reconstituer l'historique d'avant — un `INDEX.md` neuf commence à zéro,
+  et c'est très bien ainsi. Ce n'est pas une perte de données : les handoffs individuels,
+  s'ils existent déjà sur le disque sans être indexés, restent lisibles directement. Signale
+  simplement que tu as trouvé des handoffs non indexés, sans les reconstruire un à un dans
+  l'index — laisse ce travail à l'utilisateur s'il le juge utile.
 
-Le réflexe paresseux est d'écrire dans le `handoff/` qui existe déjà, faute de mieux. C'est
-ainsi qu'un dossier de projet accumule des chantiers qui ne le concernent pas, et que la
-racine d'un arbre de travail devient un fourre-tout.
+## Un handoff qui gonfle au-delà de ~5 000 caractères
 
-**Crée ce qui manque, sans demander :**
+Le seuil n'est pas arbitraire au sens strict — au-delà, un handoff cesse d'être lu d'un
+coup d'œil, ce qui est toute sa raison d'être. Deux causes distinctes, deux traitements :
 
-- **Le projet a un dossier mais pas de `handoff/`** → crée-le. C'est un `mkdir`, et c'est ce
-  qui fera se déclencher `ltk-start` à la prochaine session.
-- **Le projet n'a pas de dossier du tout** → c'est qu'il n'est pas encore un projet. Ne le
-  fabrique pas d'autorité : dis en une ligne que ce travail mériterait son propre dossier,
-  écris le handoff dans le projet le plus proche, et **note l'idée au carnet**. Créer un
-  dossier de projet est une décision de rangement durable ; elle appartient à l'utilisateur.
-- **Le `handoff/` existe mais n'a pas d'`INDEX.md`** → crée-le en y reportant les fichiers
-  déjà présents, pas seulement le tien. Un index partiel est pire qu'aucun : il donne
-  l'illusion d'être exhaustif.
-- **Un handoff ancien n'a pas d'en-tête** → ajoute-lui-en un pendant que tu y es, avec au
-  minimum `projet`, `chantier` et `statut`. `ltk-start` ne sait pas vérifier ce qu'il ne
-  peut pas lire, et personne ne reviendra le faire plus tard.
+**Cause 1 — le projet est en réalité plusieurs projets.** C'est le cas le plus fréquent : le
+volume vient d'avoir mélangé un « reste à faire » qui ne concerne plus le même travail.
+Reviens à l'Étape 2 et découpe — la taille excessive est le symptôme, pas le problème.
 
-La différence entre les deux premiers cas est la seule qui demande du jugement : **créer un
-dossier dans un projet existant est du rangement ; créer un projet est une décision.**
+**Cause 2 — le projet est réellement long et complexe, et le mérite.** Alors ne comprime
+pas en réduisant les phrases : ce serait sacrifier justement ce qui rend un handoff utile
+(le pourquoi, les pièges, les alternatives écartées). À la place :
 
-### La longueur est un symptôme, pas une limite
-
-Un handoff qui dépasse **environ 5 000 caractères** te dit quelque chose, et ce n'est presque
-jamais « écris moins ». C'est un signal de **mauvais découpage** : tu as réuni sous un seul
-chantier ce qui en fait deux.
-
-Alors, dans cet ordre :
-
-1. **Relis avec le test d'indépendance.** Les entrées de « reste à faire » s'adressent-elles
-   toutes à la même reprise ? Si deux d'entre elles peuvent être menées par des personnes
-   différentes, à des moments différents, ce sont deux chantiers. Scinde.
-2. **Le chantier est-il rattaché au bon projet ?** Un handoff qui gonfle parce qu'il doit
-   expliquer un contexte étranger signale souvent que le travail méritait son propre projet.
-3. **Seulement alors, laisse-le grandir.** Un chantier de trois jours qui a produit huit
-   décisions structurantes *mérite* 8 000 caractères.
-
-**Ne compresse jamais pour tenir dans la cible.** Comprimer, c'est retirer les
-justifications — la seule chose qui ne se reconstitue pas en relisant le code. On obtient un
-document court que personne ne peut utiliser : le pire des deux mondes.
-
-Ce qui doit sortir, quand il faut vraiment tailler, ce sont les entrées **reconstituables** :
-la liste des fichiers créés, la chronologie des tentatives, le détail des modifications. Pas
-les décisions, pas les pièges, pas les interdits.
+- Coupe ce qui est reconstituable ailleurs (voir « Ce qui mérite d'être écrit » dans le
+  corps principal) — c'est souvent là que le gonflement s'est glissé.
+- Si le projet a plusieurs phases nettement séparées dans le temps, envisage un handoff par
+  phase plutôt qu'un seul document cumulatif — chacun reste sous le seuil, et
+  `handoff/INDEX.md` les relie par leur ordre chronologique.
+- Ne scinde jamais une section en deux fichiers sans le dire dans les deux : un handoff qui
+  renvoie silencieusement à un autre pour être complet se fera oublier à la première lecture
+  pressée.

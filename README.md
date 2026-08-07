@@ -21,7 +21,6 @@ claude plugin install ltk@leadtrunk-claude
 | Plugin | Description |
 |---|---|
 | `ltk` | Rituels de session : ouvrir (`ltk-start`), garder le cap (`ltk-focus`), affûter une demande (`ltk-prompt`), clore par un handoff durable (`ltk-exit`). |
-| `ltk-hello` | Plugin de test : commande `/hello-ltk` pour vérifier que l'installation fonctionne. |
 
 ## Structure
 

@@ -36,8 +36,8 @@ exactement de cette nature — on ne pense à les dire qu'après les avoir vus f
 
 Ils sont pourtant déjà écrits. Avant d'affûter quoi que ce soit, relis :
 
-- le `CLAUDE.md` de l'utilisateur — les règles permanentes, tous projets confondus
-- le `CLAUDE.md` du projet — ce qui est propre à ce travail
+- le `CLAUDE.md` de l'utilisateur — les règles permanentes, toutes areas confondues
+- le `CLAUDE.md` de l'area — ce qui est propre à ce travail
 - la mémoire — les pièges d'environnement et les contraintes déjà consignés
 - le handoff en cours, s'il y en a un — sa section « Interdits »
 
@@ -81,14 +81,23 @@ Les trous les plus coûteux, par ordre de fréquence :
 - **Les interdits** — ce qu'il ne faut surtout pas toucher, et qu'on n'apprend qu'après.
 - **Le niveau d'explication** — travail livré brut, ou pédagogie à chaque étape ?
 
-### 4. Distinguer ce que tu peux trancher de ce que tu dois demander
+### 4. Distinguer ce que tu tranches de ce que tu proposes en option
 
-C'est le cœur du métier. Tranche toi-même ce qui relève du bon sens professionnel et
-annonce ton choix. Ne demande que ce qui, selon la réponse, mènerait à un travail
-*différent* — pas simplement à un travail *légèrement autre*.
+C'est le cœur du métier. **Tranche toujours toi-même en premier** — y compris les points
+qui, selon la réponse, mèneraient à un travail *différent*. Une demande affûtée doit être
+complète et utilisable telle qu'elle est livrée : personne ne devrait avoir à répondre à
+quoi que ce soit avant de pouvoir s'en servir.
 
-Deux ou trois questions maximum. Une demande affûtée qui s'accompagne de huit questions
-n'a fait que déplacer la charge sur l'utilisateur.
+Ce qui changerait matériellement le travail ne disparaît pas pour autant — transforme-le en
+**raffinement optionnel**, pas en condition. Deux ou trois maximum, classés par ce qu'ils
+changeraient réellement (le plus structurant d'abord), et chacun justifié en une ligne :
+pourquoi cette réponse vaut la peine d'être donnée, pas seulement qu'elle existe. Un
+raffinement sans raison affichée se traite comme une case à cocher ; un raffinement qui
+explique ce qu'il débloque se traite comme une vraie proposition.
+
+Une demande affûtée qui s'accompagne de huit raffinements n'a fait que déplacer la charge
+sur l'utilisateur — la limite de deux ou trois reste absolue, seul le statut a changé :
+facultatif, jamais bloquant.
 
 ### 5. Découper en étapes avec points d'arrêt
 
@@ -106,7 +115,33 @@ informées.
 Rends la demande affûtée dans un bloc de code, prête à être copiée ou réutilisée, suivie
 d'une explication courte de **ce que tu as changé et pourquoi**. L'explication compte
 autant que le texte : c'est elle qui apprend à l'utilisateur à formuler mieux la fois
-suivante, jusqu'à ne plus avoir besoin de cette compétence.
+suivante, jusqu'à ne plus avoir besoin de cette compétence. Elle doit être utilisable
+immédiatement, sans attendre de réponse à quoi que ce soit — les raffinements du point 4
+viennent après, jamais avant.
+
+### 7. Figer en template réutilisable — seulement si ça le vaut
+
+Ne le fais pas par défaut : la plupart des demandes affûtées servent une fois et n'ont pas
+besoin d'exister au-delà de la conversation. Fais-le quand l'utilisateur le demande
+explicitement, ou quand la demande porte elle-même sa récurrence (« chaque mois », « à
+chaque fois qu'un client… », « pour toute l'équipe »).
+
+Repère dans la demande affûtée ce qui **change à chaque usage** — le mois concerné, le nom
+du client, le chiffre du jour — et remplace-le par une variable nommée entre chevrons :
+`<mois>`, `<nom-du-client>`. Le reste — la structure, les interdits chargés, le format
+attendu — ne bouge pas d'un usage à l'autre : c'est justement ce qui fait qu'un template
+vaut la peine d'exister.
+
+**Écris-le dans un fichier réel de l'area**, jamais seulement dans la conversation qui va
+disparaître : un fichier `templates/<nom-court>.md` à la racine du dossier de travail
+suffit, avec la liste des variables en tête. Une conversation qui referme la sienne sans
+avoir écrit ce fichier n'a rien produit de réutilisable — elle a juste bien répondu une
+fois. Cas vécu, hors de ce système : un outil concurrent gardait ces templates dans un
+historique de session plutôt que dans un fichier — trois d'entre eux ont disparu à la
+première reconnexion. Un fichier ne disparaît pas comme ça.
+
+Signale l'existence du fichier une fois, dans la restitution — pas de cérémonie, une ligne :
+`Template enregistré : templates/rapport-mensuel-ibf.md (variables : <mois>, <franchise>)`.
 
 ## Structure de sortie
 
@@ -137,8 +172,12 @@ PRÉFÉRENCES
 ## Ce que j'ai changé
 - **<changement>** — <pourquoi ça évite quoi>
 
-## Ce que je ne peux pas deviner
-1. <question dont la réponse changerait le travail>
+## Raffinements possibles — facultatifs
+1. **<le plus structurant>** <question> — <pourquoi cette réponse changerait vraiment le travail>
+2. <suivant, même format>
+<Vide si aucun trou ne mérite d'être remonté — ne force jamais une entrée ici.>
+
+<Si le point 7 s'applique : une ligne signalant le fichier template créé, avec ses variables.>
 ````
 
 ## Exemple
@@ -162,8 +201,12 @@ qu'une seule donnée ne soit touchée.
 
 ## Terminer par le titre — la ligne prête à coller
 
+**Cette section ne s'applique pas quand la méthode est empruntée depuis `ltk-start` ou
+`ltk-focus`** : ils gèrent le titre à leur propre moment, et le reproposer ici ferait
+doublon. Elle s'applique quand `ltk-prompt` est la compétence directement invoquée.
+
 Un handoff parfait dans une conversation introuvable ne sert à rien. Le titre se pose donc
-**maintenant**, tant que le projet et le chantier sont sous les yeux : trois semaines plus
+**maintenant**, tant que l'area et le projet sont sous les yeux : trois semaines plus
 tard, il faudrait rouvrir la conversation pour les redéduire.
 
 **Le format et la règle `Divers` sont dans le `CLAUDE.md` de l'arbre de travail**, section
@@ -174,7 +217,7 @@ renommage refuse la conversation en cours, et c'est une contrainte qu'un copier-
 contourne, pas une impossibilité.
 
 ```
-/rename PROJET · Chantier · AAAA.MM.JJ
+/rename AREA · Projet · AAAA.MM.JJ
 ```
 
 Une fois par séance suffit. Reproposer un titre à chaque inflexion est le travers qui fait

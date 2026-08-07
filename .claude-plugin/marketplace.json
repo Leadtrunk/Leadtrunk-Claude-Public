@@ -5,7 +5,7 @@
     "url": "https://github.com/Leadtrunk"
   },
   "metadata": {
-    "description": "Marketplace publique Leadtrunk — plugins Claude de Grégoire",
+    "description": "Marketplace publique Leadtrunk — plugins Claude de l'équipe",
     "version": "1.0.0"
   },
   "plugins": [
@@ -15,11 +15,6 @@
       "description": "Rituels de session : ouvrir (ltk-start), garder le cap (ltk-focus), affûter une demande (ltk-prompt), clore par un handoff durable (ltk-exit).",
       "category": "workflow",
       "tags": ["session", "handoff", "cadrage", "francais"]
-    },
-    {
-      "name": "ltk-hello",
-      "source": "./plugins/ltk-hello",
-      "description": "Plugin de test Leadtrunk : commande /hello-ltk pour vérifier que l'installation fonctionne"
     }
   ]
 }

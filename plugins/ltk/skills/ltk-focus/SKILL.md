@@ -3,14 +3,14 @@ name: ltk-focus
 description: >
   Garde le cap au milieu d'une session déjà engagée. Fait trois choses à chaque nouvelle
   demande : affûte la demande si elle est floue ou risquée, tient à jour le registre des
-  sujets ouverts (ce qui bloque le chantier courant) **et le carnet des idées neuves**
-  (chantiers ou projets qui viennent d'apparaître), et traite la dérive en capturant l'idée
+  sujets ouverts (ce qui bloque le projet courant) **et le carnet des idées neuves**
+  (projets ou areas qui viennent d'apparaître), et traite la dérive en capturant l'idée
   avant de recommander où la traiter. Utilise-la en cours de travail — « on est encore dans
   le sujet ? », « qu'est-ce qui reste en suspens », « liste les sujets ouverts », « quelles
   idées on a eues ? », « note ça pour plus tard », « on dérive non ? », « je devrais ouvrir
   une autre conversation ? », « LtkFocus », « ltk focus », « fais un focus » — mais aussi de
   ta propre initiative quand une demande ambiguë arrive sur un travail déjà engagé, quand une
-  idée de chantier ou de projet neuf est lancée en passant, ou quand la demande ne relève
+  idée de projet ou d'area neuve est lancée en passant, ou quand la demande ne relève
   plus de l'objectif de séance. Ni pour ouvrir une session (ltk-start / LtkStart), ni pour la
   clore (ltk-exit / LtkExit).
 ---
@@ -54,7 +54,10 @@ sujet exprès. Une compétence de cadrage qui parle plus que le travail n'avance
 ## 1 · Affûter la demande entrante
 
 Applique la méthode de `ltk-prompt`, mais **en version brève** : la session est en cours, le
-contexte est déjà partagé, et un cadrage complet serait redondant.
+contexte est déjà partagé, et un cadrage complet serait redondant. Le gabarit ci-dessous
+remplace intégralement celui de `ltk-prompt` — y compris sa proposition de titre, qui n'a
+pas sa place ici : le titre se traite plus loin, section 4, uniquement quand un nouveau
+projet s'ouvre.
 
 Concrètement, trois lignes suffisent : ce que tu as compris, ce que tu as tranché toi-même,
 et la seule question qui reste — s'il y en a une.
@@ -78,8 +81,8 @@ Une conversation produit deux choses très différentes, et les confondre en per
 
 | Registre | Ce qu'on y met | Rapport au cap | Où ça finit |
 |---|---|---|---|
-| **Sujets ouverts** | Un point **soulevé mais non tranché** *dans le chantier courant* : question posée en passant, anomalie repérée, décision reportée | Il sert le cap | Le handoff du chantier |
-| **Idées** | Un **chantier ou un projet neuf** qui vient d'apparaître : « il faudrait un jour… », « ça marcherait aussi pour… », « tiens, et si… » | Il sort du cap | Le carnet d'idées, durable |
+| **Sujets ouverts** | Un point **soulevé mais non tranché** *dans le projet courant* : question posée en passant, anomalie repérée, décision reportée | Il sert le cap | Le handoff du projet |
+| **Idées** | Un **projet ou une area neuve** qui vient d'apparaître : « il faudrait un jour… », « ça marcherait aussi pour… », « tiens, et si… » | Il sort du cap | Le carnet d'idées, durable |
 
 **La distinction n'est pas administrative.** Un sujet ouvert bloque le travail en cours :
 tant qu'il n'est pas tranché, quelque chose n'avance pas. Une idée ne bloque rien — elle
@@ -97,8 +100,8 @@ Tiens la liste au fil de l'eau, et ressors-la quand l'utilisateur la demande ou 
 séance approche de sa fin. **Un point traité en sort** : une liste qui ne se vide jamais
 n'est plus lue.
 
-À la clôture, `ltk-exit` la reprend telle quelle pour « Ce qui reste à faire » et
-« Questions en suspens ». Sans elle, ces sections se reconstituent de mémoire, donc mal.
+À la clôture, `ltk-exit` la reprend telle quelle pour « Tâches restantes » et « Questions
+en suspens ». Sans elle, ces sections se reconstituent de mémoire, donc mal.
 
 ### Le registre des idées
 
@@ -108,8 +111,8 @@ dans le code ni dans les fichiers — elle n'existait que dans la conversation.
 
 ```markdown
 ## Idées apparues
-1. **<l'idée en une ligne>** — venue de <ce qui l'a fait naître>, porterait sur <projet ou
-   chantier neuf>
+1. **<l'idée en une ligne>** — venue de <ce qui l'a fait naître>, porterait sur <area ou
+   projet neuf>
 ```
 
 Le champ **« venue de »** est le seul qui compte vraiment. Une idée sans son déclencheur est
@@ -124,41 +127,41 @@ le travail en cours.
 
 À la clôture, `ltk-exit` verse ce registre dans le **carnet d'idées** du dossier de travail —
 `IDEES.md` à la racine de l'arbre. Pas en mémoire : la mémoire contient des faits durables,
-pas des intentions. Pas dans un handoff : une idée de projet neuf n'appartient encore à aucun
-projet.
+pas des intentions. Pas dans un handoff : une idée d'area neuve n'appartient encore à aucun
+area.
 
 ## 3 · Traiter la dérive — capturer sans suivre
 
 ### Reconnaître la dérive — et à quel niveau elle se produit
 
 **La dérive n'est pas un défaut à supprimer.** C'est ainsi qu'on découvre du travail qu'on
-n'avait pas prévu : la plupart des bons chantiers naissent à côté d'un autre. Une compétence
+n'avait pas prévu : la plupart des bons projets naissent à côté d'un autre. Une compétence
 qui se contenterait de ramener au cap ferait perdre exactement ce qui a le plus de valeur.
 
 Le tort n'est pas de dériver, c'est de **suivre** la dérive au lieu de la **noter** — ou de
 la refuser sans rien en garder. Dans les deux cas on perd quelque chose : le cap dans le
 premier, l'idée dans le second.
 
-Il ne s'agit donc pas de changer de fichier ni d'outil : un même chantier traverse dix
+Il ne s'agit donc pas de changer de fichier ni d'outil : un même projet traverse dix
 fichiers. Ce qui compte est **de quel niveau on change**.
 
 | Ce qui change | Exemple | Ce que tu fais |
 |---|---|---|
-| Rien — même chantier | On passe de l'écriture au test | Tu te tais |
+| Rien — même projet | On passe de l'écriture au test | Tu te tais |
 | Une **idée** est lancée sans qu'on la suive | « il faudrait un jour un plugin pour les relevés » | **Tu la notes** au registre des idées, deux phrases, et tu reviens au cap |
-| **Le chantier**, même projet | Du plugin à la réorganisation mémoire, dans le même dépôt | Tu notes l'idée si c'en est une, tu signales que le chantier précédent est à clore, et tu continues ici |
-| **Le projet** | Du dépôt de compétences à la base Finance | Tu notes, **puis** tu recommandes une conversation neuve — dans cet ordre |
+| **Le projet**, même area | Du plugin à la réorganisation mémoire, dans le même dépôt | Tu notes l'idée si c'en est une, tu signales que le projet précédent est à clore, et tu continues ici |
+| **L'area** | Du dépôt de compétences à la base Finance | Tu notes, **puis** tu recommandes une conversation neuve — dans cet ordre |
 
 C'est la distinction utile, et elle évite le principal défaut de cette compétence : signaler
-une dérive à chaque inflexion. Changer de chantier à l'intérieur d'un projet est **normal** —
+une dérive à chaque inflexion. Changer de projet à l'intérieur d'une area est **normal** —
 les chemins sont partagés, le contexte sert encore. Ce qui n'est pas normal, c'est de laisser
-le chantier précédent s'éteindre sans être clos : c'est ainsi qu'un travail à 90 % ne se
+le projet précédent s'éteindre sans être clos : c'est ainsi qu'un travail à 90 % ne se
 termine jamais.
 
 Un test qui recoupe le tableau : *si je devais nommer cette conversation maintenant, le titre
 couvrirait-il encore ce qu'on vient de faire ?* Si la réponse impose un « et » entre deux
-**projets** — « compétences Ltk **et** migration de la base » — il y a dérive au sens fort.
-Un « et » entre deux chantiers d'un même projet ne demande qu'une clôture, pas un départ.
+**areas** — « compétences Ltk **et** migration de la base » — il y a dérive au sens fort.
+Un « et » entre deux projets d'une même area ne demande qu'une clôture, pas un départ.
 
 ### Pourquoi ouvrir une nouvelle conversation plutôt que continuer
 
@@ -168,7 +171,7 @@ Ce n'est pas une question de propreté. Trois coûts concrets :
    sur le raisonnement du second — on répond à la migration de base avec les réflexes de
    l'indexation de disques.
 2. **Un seul handoff pour deux sujets n'est retrouvé par aucun des deux.** Il sera rangé
-   dans un projet, sous un nom ; la moitié de son contenu sera invisible pour l'autre.
+   dans une area, sous un nom ; la moitié de son contenu sera invisible pour l'autre.
 3. **Le premier sujet est abandonné sans être clos.** Personne n'a décidé de l'arrêter : il
    a simplement cessé d'être mentionné. C'est ainsi qu'un travail à 90 % ne se termine jamais.
 
@@ -179,7 +182,7 @@ Sans dramatiser, en trois lignes, et **en proposant la sortie plutôt qu'en refu
 ```markdown
 **Noté :** <le nouveau sujet, en une ligne> — au carnet d'idées, on ne le perd pas.
 
-**On change de projet**, en revanche : <l'ancien> et <le nouveau> ne partagent ni dossier ni
+**On change d'area**, en revanche : <l'ancien> et <le nouveau> ne partagent ni dossier ni
 objectif. Je recommande de clore <l'ancien> avec LtkExit — il reste <N> point(s) ouvert(s) —
 puis d'ouvrir une conversation neuve pour <le nouveau>, que LtkStart cadrera.
 
@@ -196,7 +199,7 @@ d'enchaîner — une urgence, une question courte, un lien entre les deux sujets
 que tu ne vois pas. Signale une fois, puis obéis. Répéter l'avertissement à chaque message
 est le meilleur moyen de faire désinstaller la compétence.
 
-## 4 · Ouvrir un chantier — ou proposer un projet
+## 4 · Ouvrir un projet — ou proposer une area
 
 Noter une idée au carnet est le bon geste quand elle **sort du cap**. Mais il arrive qu'elle
 soit au contraire ce qu'on est en train de faire : le travail a glissé vers autre chose, ce
@@ -208,51 +211,52 @@ C'est le troisième cas, entre « se taire » et « noter pour plus tard » : **
 
 | Ce qui apparaît | Ce que tu fais | Pourquoi |
 |---|---|---|
-| Un **chantier** dans un projet existant | **Ouvre-le**, annonce-le en une ligne, continue | C'est du rangement : un objectif de plus dans un lieu qui existe déjà |
-| Un **projet** entier | **Propose-le**, n'agis pas | C'est une décision durable de rangement : elle appartient à l'utilisateur |
+| Un **projet** dans une area existante | **Ouvre-le**, annonce-le en une ligne, continue | C'est du rangement : un objectif de plus dans un lieu qui existe déjà |
+| Une **area** entière | **Propose-le**, n'agis pas | C'est une décision durable de rangement : elle appartient à l'utilisateur |
 
-La même règle qu'à la clôture, et pour la même raison : créer un dossier dans un projet
-existant n'engage rien, créer un projet engage la carte de l'arbre.
+La même règle qu'à la clôture, et pour la même raison : créer un dossier dans une area
+existant n'engage rien, créer une area engage la carte de l'arbre.
 
-### Ouvrir un chantier
+### Ouvrir un projet
 
 Une ligne, puis on continue — ce n'est pas une cérémonie :
 
 ```markdown
-**Nouveau chantier :** `<projet>` → `<chantier>`. J'ouvre, on poursuit.
+**Nouveau projet :** `<area>` → `<projet>`. J'ouvre, on poursuit.
 ```
 
-Concrètement : rien à créer tout de suite. Le chantier existe dès qu'il est **nommé**, et
+Concrètement : rien à créer tout de suite. Le projet existe dès qu'il est **nommé**, et
 son handoff s'écrira à la clôture — `ltk-exit` sait créer le `handoff/` et l'`INDEX.md`
 manquants. Nommer tôt sert à autre chose : le registre des sujets ouverts se range dès lors
-sous le bon chantier, et la clôture n'aura pas à démêler deux travaux mélangés.
+sous le bon projet, et la clôture n'aura pas à démêler deux travaux mélangés.
 
 **Le titre de la conversation vient de devenir faux.** C'est le moment le plus utile pour le
-dire, parce que c'est le seul où l'écart est visible : le titre annonce un chantier, on en
+dire, parce que c'est le seul où l'écart est visible : le titre annonce un projet, on en
 mène un autre. Applique la nomenclature du `CLAUDE.md` de l'arbre — format et règle `Divers`
-y sont définis —, donne la ligne `/rename` prête à coller, et continue sans attendre la
-réponse.
+y sont définis —, donne la ligne `/rename` prête à coller — l'outil de renommage refuse la
+conversation en cours, un copier-coller contourne cette contrainte —, et continue sans
+attendre la réponse.
 
 ```
-/rename PROJET · Chantier · AAAA.MM.JJ
+/rename AREA · Projet · AAAA.MM.JJ
 ```
 
-**Une fois par nouveau chantier, pas davantage.** Reproposer un titre à chaque inflexion est
+**Une fois par nouveau projet, pas davantage.** Reproposer un titre à chaque inflexion est
 exactement le travers qui fait désinstaller cette compétence.
 
 **Quand ouvrir plutôt que noter :** le test d'indépendance, comme partout. Si ce qu'on fait
-maintenant pourrait être clos sans que le chantier de départ le soit, c'est déjà un second
-chantier — même si personne ne l'a décidé.
+maintenant pourrait être clos sans que le projet de départ le soit, c'est déjà un second
+projet — même si personne ne l'a décidé.
 
-### Proposer un projet
+### Proposer une area
 
-Un projet neuf demande un dossier, une entrée dans la carte de l'arbre, souvent un dépôt.
+Une area neuve demande un dossier, une entrée dans la carte de l'arbre, souvent un dépôt.
 Rien de tout cela ne se décide en passant. Propose, et **n'attends pas la réponse pour
 continuer le travail en cours** :
 
 ```markdown
-**Ceci mérite son propre projet.** `<nom>` — <ce qu'il couvre>, distinct de <projet actuel>
-parce que <la raison>. Il faudrait un dossier, une ligne dans la carte des projets, et
+**Ceci mérite son propre area.** `<nom>` — <ce qu'il couvre>, distinct de <area actuelle>
+parce que <la raison>. Il faudrait un dossier, une ligne dans la carte des areas, et
 peut-être un dépôt.
 
 Je note l'idée au carnet en attendant ta réponse ; dis-moi si je l'ouvre.
