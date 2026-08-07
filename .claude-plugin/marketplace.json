@@ -11,7 +11,11 @@
   "plugins": [
     {
       "name": "ltk",
-      "source": "./plugins/ltk",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Leadtrunk/Leadtrunk-Claude-Public.git",
+        "path": "plugins/ltk"
+      },
       "description": "Rituels de session : ouvrir (ltk-start), garder le cap (ltk-focus), affûter une demande (ltk-prompt), clore par un handoff durable (ltk-exit).",
       "category": "workflow",
       "tags": ["session", "handoff", "cadrage", "francais"]
