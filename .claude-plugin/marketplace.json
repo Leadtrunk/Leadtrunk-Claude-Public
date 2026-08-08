@@ -13,7 +13,7 @@
       "name": "ltk",
       "source": {
         "source": "git-subdir",
-        "url": "https://github.com/Leadtrunk/Leadtrunk-Claude-Public.git",
+        "url": "https://github.com/Leadtrunk/claude-catalogue-public.git",
         "path": "plugins/ltk"
       },
       "description": "Rituels de session : ouvrir (ltk-start), garder le cap (ltk-focus), affûter une demande (ltk-prompt), clore par un handoff durable (ltk-exit).",

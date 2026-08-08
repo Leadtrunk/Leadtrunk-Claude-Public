@@ -364,7 +364,7 @@ Ta réponse finale tient en **une dizaine de lignes** :
 | ltk · outillage | clos | `Partage/handoff/2026-08-05-outillage.md` |
 | ltk · plugin | **ouvert** (3 tâches) | `Partage/handoff/2026-08-05-plugin.md` |
 
-Index à jour · poussé sur `Leadtrunk/ltk` · sauvegarde lancée.
+Index à jour · poussé sur `Leadtrunk/claude-catalogue` · sauvegarde lancée.
 
 Titre à coller :
 ```

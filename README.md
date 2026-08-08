@@ -5,10 +5,10 @@ Marketplace publique de plugins Claude Code / Claude Desktop de Leadtrunk.
 ## Installation
 
 ```
-claude plugin marketplace add Leadtrunk/Leadtrunk-Claude-Public
+claude plugin marketplace add Leadtrunk/claude-catalogue-public
 ```
 
-Ou dans une session interactive : `/plugin marketplace add Leadtrunk/Leadtrunk-Claude-Public`
+Ou dans une session interactive : `/plugin marketplace add Leadtrunk/claude-catalogue-public`
 
 Puis installer un plugin du catalogue :
 
